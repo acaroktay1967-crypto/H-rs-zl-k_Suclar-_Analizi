@@ -63,7 +63,6 @@ namespace HirsizlikSuclariAnalizi.Data
                 INSERT INTO YargitayKarari (KararNumarasi, SucTuru, KararTarihi, Ozet, TamMetin) VALUES
                 ('2019/1234', 0, '2019-03-15', 'Basit hırsızlık suçunda mal değerinin önemi', 'TCK 141. madde uyarınca basit hırsızlık suçunda malın değeri ceza miktarını etkiler. Düşük değerdeki mallarda ceza alt sınırdan uygulanmalıdır.'),
                 ('2020/5678', 1, '2020-06-22', 'Gece vakti işlenen hırsızlık nitelikli hırsızlıktır', 'TCK 142. madde uyarınca gece vakti işlenen hırsızlık nitelikli hırsızlık sayılır ve ceza yarı oranında artırılır.'),
-                ('2021/9012', 1, 'Gece vakti işlenen hırsızlık nitelikli hırsızlıktır', 'TCK 142. madde uyarınca gece vakti işlenen hırsızlık nitelikli hırsızlık sayılır ve ceza yarı oranında artırılır.'),
                 ('2021/9012', 1, '2021-09-10', 'Etkin pişmanlık hükümlerinin uygulanması', 'Failin malı geri vermesi veya zararı gidermesi halinde etkin pişmanlık hükümleri uygulanarak ceza üçte birine kadar indirilebilir.'),
                 ('2022/3456', 0, '2022-01-05', 'Basit hırsızlıkta zincirleme suç', 'Aynı kişiye karşı aynı suç işleme kararının devamı olarak farklı zamanlarda işlenen basit hırsızlık suçlarında zincirleme suç hükümleri uygulanır.'),
                 ('2022/7890', 1, '2022-11-30', 'Konut dokunulmazlığını ihlalle hırsızlık', 'TCK 142/2-b maddesi uyarınca konut dokunulmazlığını ihlal suretiyle işlenen hırsızlık nitelikli hırsızlıktır.');
