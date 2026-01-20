@@ -1,0 +1,61 @@
+<UserControl x:Class="HirsizlikSuclariAnalizi.Views.YargitayKararlariView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Yargıtay Kararları" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,20"/>
+
+        <!-- Filtreleme -->
+        <GroupBox Grid.Row="1" Header="Filtreleme" Padding="10" Margin="0,0,0,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                    <TextBlock Text="Karar Numarası:" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtKararNumarasi" Padding="5"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="0,0,10,0">
+                    <TextBlock Text="Suç Türü:" Margin="0,0,0,5"/>
+                    <ComboBox x:Name="cmbSucTuru" Padding="5">
+                        <ComboBoxItem Content="Tümü" IsSelected="True"/>
+                        <ComboBoxItem Content="Basit Hırsızlık"/>
+                        <ComboBoxItem Content="Nitelikli Hırsızlık"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <Button Grid.Column="2" x:Name="btnFiltrele" Content="Filtrele" Click="BtnFiltrele_Click" 
+                        Background="#3498db" Foreground="White" Padding="20,8" VerticalAlignment="Bottom" Cursor="Hand"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Karar Listesi -->
+        <DataGrid Grid.Row="2" x:Name="dgKararlar" AutoGenerateColumns="False" IsReadOnly="True" 
+                  SelectionMode="Single" SelectionChanged="DgKararlar_SelectionChanged"
+                  Background="White" RowBackground="#f8f9fa" AlternatingRowBackground="#e9ecef">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Karar No" Binding="{Binding KararNumarasi}" Width="120"/>
+                <DataGridTextColumn Header="Tarih" Binding="{Binding KararTarihi, StringFormat=dd.MM.yyyy}" Width="100"/>
+                <DataGridTextColumn Header="Suç Türü" Binding="{Binding SucTuruText}" Width="150"/>
+                <DataGridTextColumn Header="Özet" Binding="{Binding Ozet}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
