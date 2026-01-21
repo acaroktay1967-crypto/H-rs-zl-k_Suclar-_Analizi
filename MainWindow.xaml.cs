@@ -118,11 +118,12 @@ namespace TextEditor
         private bool IsSpecialUnicodeCharacter(char c)
         {
             // Check for various Unicode character categories
+            // These ranges cover special symbols, mathematical operators, arrows, box drawing, etc.
             int code = (int)c;
             
             // Special symbols, mathematical operators, arrows, box drawing, etc.
-            return (code >= 0x0080 && code <= 0x024F) || // Latin Extended
-                   (code >= 0x0370 && code <= 0x03FF) || // Greek
+            return (code >= 0x0080 && code <= 0x024F) || // Latin Extended-A and Extended-B
+                   (code >= 0x0370 && code <= 0x03FF) || // Greek and Coptic
                    (code >= 0x0400 && code <= 0x04FF) || // Cyrillic
                    (code >= 0x0530 && code <= 0x058F) || // Armenian
                    (code >= 0x0590 && code <= 0x05FF) || // Hebrew
@@ -298,10 +299,21 @@ namespace TextEditor
             PdfWriter.GetInstance(pdfDoc, new FileStream(fileName, FileMode.Create));
             pdfDoc.Open();
 
-            // Create font with Unicode support
+            // Create font with Unicode support - try Arial, fallback to Helvetica
             string fontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf");
-            BaseFont baseFont = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            IText.Font font = new IText.Font(baseFont, 12);
+            IText.Font font;
+            
+            if (File.Exists(fontPath))
+            {
+                BaseFont baseFont = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                font = new IText.Font(baseFont, 12);
+            }
+            else
+            {
+                // Fallback to Helvetica font
+                BaseFont baseFontHelvetica = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                font = new IText.Font(baseFontHelvetica, 12);
+            }
 
             TextRange textRange = new TextRange(MainTextBox.Document.ContentStart, MainTextBox.Document.ContentEnd);
             string text = textRange.Text;
