@@ -51,7 +51,7 @@
             <Separator/>
             <Button Content="Kalın" Click="Bold_Click" Width="50" Margin="2" FontWeight="Bold"/>
             <Button Content="İtalik" Click="Italic_Click" Width="50" Margin="2" FontStyle="Italic"/>
-            <Button Content="Altı Çizili" Click="Underline_Click" Width="80" Margin="2">
+            <Button Click="Underline_Click" Width="80" Margin="2">
                 <Button.Content>
                     <TextBlock TextDecorations="Underline">Altı Çizili</TextBlock>
                 </Button.Content>

@@ -10,8 +10,8 @@ using System.Windows.Media;
 using Microsoft.Win32;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-using iTextSharp.text;
+using OpenXmlWord = DocumentFormat.OpenXml.Wordprocessing;
+using IText = iTextSharp.text;
 using iTextSharp.text.pdf;
 
 namespace TextEditor
@@ -29,7 +29,7 @@ namespace TextEditor
 
         private void InitializeFontComboBox()
         {
-            var fonts = Fonts.SystemFontFamilies.OrderBy(f => f.Source).ToList();
+            var fonts = System.Windows.Media.Fonts.SystemFontFamilies.OrderBy(f => f.Source).ToList();
             FontFamilyComboBox.ItemsSource = fonts.Select(f => f.Source);
             FontFamilyComboBox.SelectedItem = "Arial";
         }
@@ -248,8 +248,8 @@ namespace TextEditor
             using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(fileName, WordprocessingDocumentType.Document))
             {
                 MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
-                mainPart.Document = new Document();
-                Body body = mainPart.Document.AppendChild(new Body());
+                mainPart.Document = new OpenXmlWord.Document();
+                OpenXmlWord.Body body = mainPart.Document.AppendChild(new OpenXmlWord.Body());
 
                 TextRange textRange = new TextRange(MainTextBox.Document.ContentStart, MainTextBox.Document.ContentEnd);
                 string text = textRange.Text;
@@ -257,9 +257,9 @@ namespace TextEditor
                 var lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                 foreach (var line in lines)
                 {
-                    DocumentFormat.OpenXml.Wordprocessing.Paragraph para = body.AppendChild(new DocumentFormat.OpenXml.Wordprocessing.Paragraph());
-                    DocumentFormat.OpenXml.Wordprocessing.Run run = para.AppendChild(new DocumentFormat.OpenXml.Wordprocessing.Run());
-                    run.AppendChild(new DocumentFormat.OpenXml.Wordprocessing.Text(line));
+                    OpenXmlWord.Paragraph para = body.AppendChild(new OpenXmlWord.Paragraph());
+                    OpenXmlWord.Run run = para.AppendChild(new OpenXmlWord.Run());
+                    run.AppendChild(new OpenXmlWord.Text(line));
                 }
 
                 mainPart.Document.Save();
@@ -294,14 +294,14 @@ namespace TextEditor
 
         private void ExportToPdfDocument(string fileName)
         {
-            Document pdfDoc = new Document(PageSize.A4);
+            IText.Document pdfDoc = new IText.Document(IText.PageSize.A4);
             PdfWriter.GetInstance(pdfDoc, new FileStream(fileName, FileMode.Create));
             pdfDoc.Open();
 
             // Create font with Unicode support
             string fontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf");
             BaseFont baseFont = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            Font font = new Font(baseFont, 12);
+            IText.Font font = new IText.Font(baseFont, 12);
 
             TextRange textRange = new TextRange(MainTextBox.Document.ContentStart, MainTextBox.Document.ContentEnd);
             string text = textRange.Text;
@@ -309,7 +309,7 @@ namespace TextEditor
             var lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var line in lines)
             {
-                pdfDoc.Add(new iTextSharp.text.Paragraph(line, font));
+                pdfDoc.Add(new IText.Paragraph(line, font));
             }
 
             pdfDoc.Close();
@@ -436,12 +436,12 @@ namespace TextEditor
         {
             if (FontFamilyComboBox.SelectedItem != null && MainTextBox != null)
             {
-                string fontFamily = FontFamilyComboBox.SelectedItem.ToString();
+                string fontFamily = FontFamilyComboBox.SelectedItem.ToString() ?? "Arial";
                 if (!string.IsNullOrEmpty(fontFamily))
                 {
                     if (MainTextBox.Selection != null && !MainTextBox.Selection.IsEmpty)
                     {
-                        MainTextBox.Selection.ApplyPropertyValue(TextElement.FontFamilyProperty, new FontFamily(fontFamily));
+                        MainTextBox.Selection.ApplyPropertyValue(TextElement.FontFamilyProperty, new System.Windows.Media.FontFamily(fontFamily));
                     }
                 }
             }
