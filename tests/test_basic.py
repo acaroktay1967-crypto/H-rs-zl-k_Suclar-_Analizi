@@ -105,7 +105,7 @@ class TestOpenAIService(unittest.TestCase):
             with self.assertRaises(ValueError):
                 OpenAIService()
     
-    @patch('openai.Completion.create')
+    @patch('openai.resources.completions.Completions.create')
     def test_analyze_event_mock(self, mock_create):
         """Test event analysis with mocked OpenAI response"""
         from src.ai_integration.openai_service import OpenAIService

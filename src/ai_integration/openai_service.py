@@ -5,7 +5,7 @@ Provides event analysis and recommendation generation using OpenAI models
 
 import os
 from typing import Dict, List, Optional
-import openai
+from openai import OpenAI
 
 
 class OpenAIService:
@@ -23,7 +23,7 @@ class OpenAIService:
         if not self.api_key:
             raise ValueError("OpenAI API key must be provided or set in OPENAI_API_KEY environment variable")
         
-        openai.api_key = self.api_key
+        self.client = OpenAI(api_key=self.api_key)
         self.model = model
         
     def analyze_event(self, event_description: str, event_type: str = "hırsızlık") -> Dict:
@@ -51,8 +51,8 @@ class OpenAIService:
         """
         
         try:
-            response = openai.Completion.create(
-                engine=self.model,
+            response = self.client.completions.create(
+                model=self.model,
                 prompt=prompt,
                 max_tokens=1500,
                 temperature=0.7,
@@ -108,8 +108,8 @@ class OpenAIService:
         """
         
         try:
-            response = openai.Completion.create(
-                engine=self.model,
+            response = self.client.completions.create(
+                model=self.model,
                 prompt=prompt,
                 max_tokens=1000,
                 temperature=0.7,
@@ -148,8 +148,8 @@ class OpenAIService:
         """
         
         try:
-            response = openai.Completion.create(
-                engine=self.model,
+            response = self.client.completions.create(
+                model=self.model,
                 prompt=prompt,
                 max_tokens=200,
                 temperature=0.5

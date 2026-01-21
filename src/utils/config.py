@@ -4,7 +4,7 @@ Handles loading and validation of API keys and settings
 """
 
 import os
-from typing import Dict, Optional
+from typing import Dict, Optional, Tuple, List
 from pathlib import Path
 
 
@@ -59,7 +59,7 @@ class Config:
         """Get output configuration"""
         return self.settings['output']
     
-    def validate_config(self) -> tuple[bool, list]:
+    def validate_config(self) -> Tuple[bool, List[str]]:
         """
         Validate configuration
         
