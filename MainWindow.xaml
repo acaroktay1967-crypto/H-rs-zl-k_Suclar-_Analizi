@@ -1,0 +1,98 @@
+<Window x:Class="TextEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Metin Editörü" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Menu Bar -->
+        <Menu Grid.Row="0">
+            <MenuItem Header="Dosya">
+                <MenuItem Header="Yeni" Click="NewDocument_Click"/>
+                <MenuItem Header="Aç..." Click="OpenDocument_Click"/>
+                <MenuItem Header="Kaydet..." Click="SaveDocument_Click"/>
+                <Separator/>
+                <MenuItem Header="Word'e Aktar (.docx)" Click="ExportToWord_Click"/>
+                <MenuItem Header="PDF'e Aktar" Click="ExportToPDF_Click"/>
+                <MenuItem Header="UYAP UDF'e Aktar" Click="ExportToUYAP_Click"/>
+                <Separator/>
+                <MenuItem Header="Yazdır..." Click="Print_Click"/>
+                <Separator/>
+                <MenuItem Header="Çıkış" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Düzenle">
+                <MenuItem Header="Kes" Click="Cut_Click" InputGestureText="Ctrl+X"/>
+                <MenuItem Header="Kopyala" Click="Copy_Click" InputGestureText="Ctrl+C"/>
+                <MenuItem Header="Yapıştır" Click="Paste_Click" InputGestureText="Ctrl+V"/>
+                <Separator/>
+                <MenuItem Header="Tümünü Seç" Click="SelectAll_Click" InputGestureText="Ctrl+A"/>
+            </MenuItem>
+            <MenuItem Header="Biçim">
+                <MenuItem Header="Kalın" Click="Bold_Click" InputGestureText="Ctrl+B"/>
+                <MenuItem Header="İtalik" Click="Italic_Click" InputGestureText="Ctrl+I"/>
+                <MenuItem Header="Altı Çizili" Click="Underline_Click" InputGestureText="Ctrl+U"/>
+            </MenuItem>
+            <MenuItem Header="Hakkında">
+                <MenuItem Header="Hakkında" Click="About_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Toolbar -->
+        <ToolBar Grid.Row="1" Height="40">
+            <Button Content="Kes" Click="Cut_Click" Width="50" Margin="2"/>
+            <Button Content="Kopyala" Click="Copy_Click" Width="60" Margin="2"/>
+            <Button Content="Yapıştır" Click="Paste_Click" Width="60" Margin="2"/>
+            <Separator/>
+            <Button Content="Kalın" Click="Bold_Click" Width="50" Margin="2" FontWeight="Bold"/>
+            <Button Content="İtalik" Click="Italic_Click" Width="50" Margin="2" FontStyle="Italic"/>
+            <Button Click="Underline_Click" Width="80" Margin="2">
+                <Button.Content>
+                    <TextBlock TextDecorations="Underline">Altı Çizili</TextBlock>
+                </Button.Content>
+            </Button>
+            <Separator/>
+            <Label Content="Yazı Tipi:" VerticalAlignment="Center"/>
+            <ComboBox x:Name="FontFamilyComboBox" Width="150" SelectionChanged="FontFamily_Changed" 
+                      VerticalAlignment="Center" Margin="2"/>
+            <Label Content="Boyut:" VerticalAlignment="Center" Margin="5,0,0,0"/>
+            <ComboBox x:Name="FontSizeComboBox" Width="60" SelectionChanged="FontSize_Changed" 
+                      VerticalAlignment="Center" Margin="2"/>
+            <Separator/>
+            <Button Content="Yazdır" Click="Print_Click" Width="60" Margin="2"/>
+        </ToolBar>
+
+        <!-- Rich Text Box -->
+        <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="1" Margin="5">
+            <RichTextBox x:Name="MainTextBox" 
+                         VerticalScrollBarVisibility="Auto" 
+                         HorizontalScrollBarVisibility="Auto"
+                         AcceptsReturn="True"
+                         AcceptsTab="True"
+                         TextChanged="MainTextBox_TextChanged"
+                         Padding="5">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text=""/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </Border>
+
+        <!-- Status Bar -->
+        <StatusBar Grid.Row="3">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusText" Text="Hazır"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock x:Name="CharCountText" Text="Karakter: 0"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
