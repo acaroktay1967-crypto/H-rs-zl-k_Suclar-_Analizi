@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanun Görüntüleyici - UI Mockup</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .window {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .title-bar {
+            background: #2196F3;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .title-bar-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        .title-bar-buttons span {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        .content {
+            padding: 20px;
+        }
+        .button-panel {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .law-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            min-width: 100px;
+            height: 40px;
+            transition: all 0.3s;
+        }
+        .law-button:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+        .btn-tck { background-color: #2196F3; }
+        .btn-cmk { background-color: #4CAF50; }
+        .btn-tmk { background-color: #FF9800; }
+        .btn-tbk { background-color: #9C27B0; }
+        .btn-cik { background-color: #F44336; }
+        .btn-clear { background-color: #607D8B; }
+        .text-editor {
+            border: 1px solid #ccc;
+            padding: 15px;
+            min-height: 400px;
+            max-height: 400px;
+            overflow-y: auto;
+            background: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        .placeholder {
+            color: #666;
+            font-style: italic;
+        }
+        .law-text {
+            white-space: pre-wrap;
+            color: #333;
+        }
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #E3F2FD;
+            border-left: 4px solid #2196F3;
+            border-radius: 4px;
+        }
+        .info h3 {
+            margin-top: 0;
+            color: #1976D2;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .feature {
+            padding: 15px;
+            background: #f9f9f9;
+            border-left: 3px solid #2196F3;
+            border-radius: 4px;
+        }
+        .feature h4 {
+            margin-top: 0;
+            color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; color: #2196F3;">Hırsızlık Suçları Analizi - Kanun Görüntüleyici</h1>
+    <p style="text-align: center; color: #666;">WPF Uygulama Arayüzü Mockup</p>
+    
+    <div class="window">
+        <div class="title-bar">
+            <span>Hırsızlık Suçları Analizi - Kanun Görüntüleyici</span>
+            <div class="title-bar-buttons">
+                <span title="Minimize">_</span>
+                <span title="Maximize">□</span>
+                <span title="Close">X</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="button-panel">
+                <button class="law-button btn-tck" title="Türk Ceza Kanunu">TCK</button>
+                <button class="law-button btn-cmk" title="Ceza Muhakemesi Kanunu">CMK</button>
+                <button class="law-button btn-tmk" title="Türk Medeni Kanunu">TMK</button>
+                <button class="law-button btn-tbk" title="Türk Borçlar Kanunu">TBK</button>
+                <button class="law-button btn-cik" title="Çocuk Koruma Kanunu">ÇKK</button>
+                <button class="law-button btn-clear" title="Metin editörünü temizle">Temizle</button>
+            </div>
+            
+            <div class="text-editor" id="textEditor">
+                <div class="placeholder">Kanun görüntülemek için yukarıdaki butonlardan birini seçin.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info">
+        <h3>📋 Uygulama Özellikleri</h3>
+        <div class="features">
+            <div class="feature">
+                <h4>🔵 TCK - Türk Ceza Kanunu</h4>
+                <p>5237 Sayılı Kanun - Suçları ve cezaları düzenler</p>
+            </div>
+            <div class="feature">
+                <h4>🟢 CMK - Ceza Muhakemesi Kanunu</h4>
+                <p>5271 Sayılı Kanun - Ceza yargılaması usullerini düzenler</p>
+            </div>
+            <div class="feature">
+                <h4>🟠 TMK - Türk Medeni Kanunu</h4>
+                <p>4721 Sayılı Kanun - Medeni hukuk düzenlemelerini içerir</p>
+            </div>
+            <div class="feature">
+                <h4>🟣 TBK - Türk Borçlar Kanunu</h4>
+                <p>6098 Sayılı Kanun - Borç ilişkilerini düzenler</p>
+            </div>
+            <div class="feature">
+                <h4>🔴 ÇKK - Çocuk Koruma Kanunu</h4>
+                <p>5395 Sayılı Kanun - Çocukların korunmasını düzenler</p>
+            </div>
+            <div class="feature">
+                <h4>⚪ Temizle</h4>
+                <p>Metin editörünü temizler ve başlangıç mesajını gösterir</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="info" style="margin-top: 20px; background: #FFF3E0; border-left-color: #FF9800;">
+        <h3>🛠️ Teknik Detaylar</h3>
+        <ul>
+            <li><strong>Platform:</strong> .NET 8.0 (Windows)</li>
+            <li><strong>Framework:</strong> WPF (Windows Presentation Foundation)</li>
+            <li><strong>UI Bileşenleri:</strong> Button, RichTextBox, Grid, StackPanel</li>
+            <li><strong>Kanun Metinleri:</strong> kanunlar/ dizininde .txt dosyaları</li>
+            <li><strong>Encoding:</strong> UTF-8 (Türkçe karakter desteği)</li>
+            <li><strong>Hata Yönetimi:</strong> MessageBox ile kullanıcı bildirimleri</li>
+        </ul>
+    </div>
+
+    <div class="info" style="margin-top: 20px; background: #E8F5E9; border-left-color: #4CAF50;">
+        <h3>✅ Kullanım Adımları</h3>
+        <ol>
+            <li>Uygulamayı başlatın (dotnet run veya executable)</li>
+            <li>Görüntülemek istediğiniz kanun butonuna tıklayın</li>
+            <li>Kanun metni otomatik olarak metin editöründe yüklenir</li>
+            <li>Metni okuyabilir, kaydırabilir ve düzenleyebilirsiniz</li>
+            <li>Farklı kanunlar arasında geçiş yapabilirsiniz</li>
+            <li>"Temizle" butonu ile editörü temizleyebilirsiniz</li>
+        </ol>
+    </div>
+
+    <script>
+        // Örnek kanun metinleri
+        const lawTexts = {
+            'TCK': `TÜRK CEZA KANUNU (TCK)
+Kanun Numarası: 5237
+Kabul Tarihi: 26/09/2004
+
+BİRİNCİ KİTAP
+Genel Hükümler
+
+BİRİNCİ KISIM
+Temel İlkeler
+
+MADDE 1 - (1) Kanunun bağlayıcılığı
+Suç ve ceza içeren hükümler ancak kanunla konulabilir.
+
+MADDE 2 - (1) Suçta ve cezada kanunilik ilkesi
+Kanunun açıkça suç saymadığı bir fiil için kimseye ceza verilemez...
+
+MADDE 141 - (1) Hırsızlık
+Zilyedinin rızası olmadan başkasına ait taşınır bir malı, kendisine veya başkasına bir yarar sağlamak maksadıyla bulunduğu yerden alan kimseye, bir yıldan üç yıla kadar hapis cezası verilir.
+
+MADDE 142 - (1) Nitelikli hırsızlık
+Hırsızlık suçunun;
+a) Gece vakti işlenmesi,
+b) Birden fazla kişi tarafından birlikte işlenmesi,
+c) Silahla işlenmesi...`,
+            'CMK': `CEZA MUHAKEMESİ KANUNU (CMK)
+Kanun Numarası: 5271
+Kabul Tarihi: 04/12/2004
+
+BİRİNCİ KİTAP
+Temel İlkeler ve Genel Hükümler
+
+MADDE 1 - (1) Kanunilik
+Ceza muhakemesi hukuku ve güvenlik tedbiri hükümlerini ancak kanun koymaya yetkilidir.
+
+MADDE 2 - (1) Masumiyet karinesi
+Suçluluğu hükmen sabit oluncaya kadar kimse suçlu sayılamaz...`,
+            'TMK': `TÜRK MEDENİ KANUNU (TMK)
+Kanun Numarası: 4721
+Kabul Tarihi: 22/11/2001
+
+BİRİNCİ KİTAP
+Kişiler Hukuku
+
+MADDE 1 - (1) Hak ehliyeti
+Her insanın hak ehliyeti vardır.
+
+MADDE 2 - (1) Kişilik
+İnsan, sağ olarak tamamıyla doğmak koşuluyla, ana rahmine düştüğü andan başlayarak hak ehliyetine sahip olur...`,
+            'TBK': `TÜRK BORÇLAR KANUNU (TBK)
+Kanun Numarası: 6098
+Kabul Tarihi: 11/01/2011
+
+BİRİNCİ KISIM
+Genel Hükümler
+
+MADDE 1 - (1) Sözleşmeden doğan borç ilişkisi
+Borç ilişkisi, sözleşmeden, haksız fiilden, sebepsiz zenginleşmeden veya kanundan doğar...`,
+            'CIK': `ÇOCUK KORUMA KANUNU (ÇKK)
+Kanun Numarası: 5395
+Kabul Tarihi: 03/07/2005
+
+MADDE 1 - (1) Amaç
+Bu Kanunun amacı; korunma ihtiyacı olan veya suça sürüklenen çocukların korunmasına, haklarının ve esenliklerinin güvence altına alınmasına ilişkin usul ve esasları düzenlemektir...`
+        };
+
+        // Buton click event simülasyonu
+        document.querySelectorAll('.law-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const editor = document.getElementById('textEditor');
+                const text = this.textContent.trim();
+                
+                if (text === 'Temizle') {
+                    editor.innerHTML = '<div class="placeholder">Kanun görüntülemek için yukarıdaki butonlardan birini seçin.</div>';
+                } else {
+                    editor.innerHTML = '<div class="law-text">' + lawTexts[text] + '</div>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

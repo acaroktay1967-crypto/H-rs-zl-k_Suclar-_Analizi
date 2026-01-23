@@ -1,0 +1,57 @@
+﻿<Window x:Class="HirsizlikSucAnalizApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HirsizlikSucAnalizApp"
+        mc:Ignorable="d"
+        Title="Hırsızlık Suçları Analizi - Kanun Görüntüleyici" Height="600" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Kanun Butonları -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
+            <Button x:Name="btnTCK" Content="TCK" Width="100" Height="40" Margin="5" 
+                    Click="BtnTCK_Click" Background="#FF2196F3" Foreground="White" 
+                    FontSize="14" FontWeight="Bold" ToolTip="Türk Ceza Kanunu"/>
+            <Button x:Name="btnCMK" Content="CMK" Width="100" Height="40" Margin="5" 
+                    Click="BtnCMK_Click" Background="#FF4CAF50" Foreground="White" 
+                    FontSize="14" FontWeight="Bold" ToolTip="Ceza Muhakemesi Kanunu"/>
+            <Button x:Name="btnTMK" Content="TMK" Width="100" Height="40" Margin="5" 
+                    Click="BtnTMK_Click" Background="#FFFF9800" Foreground="White" 
+                    FontSize="14" FontWeight="Bold" ToolTip="Türk Medeni Kanunu"/>
+            <Button x:Name="btnTBK" Content="TBK" Width="100" Height="40" Margin="5" 
+                    Click="BtnTBK_Click" Background="#FF9C27B0" Foreground="White" 
+                    FontSize="14" FontWeight="Bold" ToolTip="Türk Borçlar Kanunu"/>
+            <Button x:Name="btnCIK" Content="ÇKK" Width="100" Height="40" Margin="5" 
+                    Click="BtnCIK_Click" Background="#FFF44336" Foreground="White" 
+                    FontSize="14" FontWeight="Bold" ToolTip="Çocuk Koruma Kanunu"/>
+            <Button x:Name="btnTemizle" Content="Temizle" Width="100" Height="40" Margin="5" 
+                    Click="BtnTemizle_Click" Background="#FF607D8B" Foreground="White" 
+                    FontSize="14" FontWeight="Bold" ToolTip="Metin editörünü temizle"/>
+        </StackPanel>
+
+        <!-- RichTextBox Metin Editörü -->
+        <Border Grid.Row="1" BorderBrush="#FFCCCCCC" BorderThickness="1" Margin="10">
+            <RichTextBox x:Name="rtbKanunMetni" 
+                         VerticalScrollBarVisibility="Auto" 
+                         HorizontalScrollBarVisibility="Auto"
+                         FontFamily="Segoe UI" 
+                         FontSize="12"
+                         Padding="10"
+                         AcceptsReturn="True"
+                         AcceptsTab="True">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text="Kanun görüntülemek için yukarıdaki butonlardan birini seçin." 
+                             FontStyle="Italic" 
+                             Foreground="#FF666666"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </Border>
+    </Grid>
+</Window>
