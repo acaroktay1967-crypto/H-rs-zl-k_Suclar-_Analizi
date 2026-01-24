@@ -1,0 +1,77 @@
+<UserControl x:Class="HirsizlikSuclariAnalizi.Views.CezaHesaplamaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Ceza Hesaplama Modülü" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,20"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Hırsızlık Türü Seçimi -->
+                <GroupBox Header="Hırsızlık Türü" Padding="10" Margin="0,0,0,15">
+                    <StackPanel>
+                        <RadioButton x:Name="rbBasitHirsizlik" Content="Basit Hırsızlık (TCK 141)" GroupName="HirsizlikTuru" IsChecked="True" Margin="0,5"/>
+                        <RadioButton x:Name="rbNitelikliHirsizlik" Content="Nitelikli Hırsızlık (TCK 142)" GroupName="HirsizlikTuru" Margin="0,5"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Mal Değeri -->
+                <GroupBox Header="Mal Değeri (TL)" Padding="10" Margin="0,0,0,15">
+                    <TextBox x:Name="txtMalDegeri" FontSize="14" Padding="5"/>
+                </GroupBox>
+
+                <!-- Ek Faktörler -->
+                <GroupBox Header="Ek Faktörler" Padding="10" Margin="0,0,0,15">
+                    <StackPanel>
+                        <CheckBox x:Name="cbGeceVakti" Content="Gece Vakti İşlenmiş" Margin="0,5"/>
+                        <CheckBox x:Name="cbEtkinPismanlik" Content="Etkin Pişmanlık" Margin="0,5"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Notlar -->
+                <GroupBox Header="Notlar" Padding="10" Margin="0,0,0,15">
+                    <TextBox x:Name="txtNotlar" Height="80" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+                </GroupBox>
+
+                <!-- Hesaplama Butonu -->
+                <Button x:Name="btnHesapla" Content="Ceza Hesapla" Click="BtnHesapla_Click" 
+                        Background="#3498db" Foreground="White" FontSize="16" FontWeight="Bold" 
+                        Padding="20,10" Margin="0,0,0,15" Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#3498db"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#2980b9"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <!-- Sonuç -->
+                <GroupBox x:Name="gbSonuc" Header="Hesaplama Sonucu" Padding="10" Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock x:Name="txtSonuc" FontSize="14" TextWrapping="Wrap" Margin="0,0,0,10"/>
+                        <TextBlock x:Name="txtAciklama" FontSize="12" TextWrapping="Wrap" Foreground="#7f8c8d" Margin="0,0,0,10"/>
+                        
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="btnKaydet" Content="Kaydet" Click="BtnKaydet_Click" 
+                                    Background="#27ae60" Foreground="White" Padding="15,8" Margin="0,0,10,0" Cursor="Hand"/>
+                            <Button x:Name="btnPdfOlustur" Content="PDF Oluştur" Click="BtnPdfOlustur_Click" 
+                                    Background="#e74c3c" Foreground="White" Padding="15,8" Cursor="Hand"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
